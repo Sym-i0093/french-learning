@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>درس ۱: سلام و معرفی در فرانسه</title>
+  <title>درس ۱: جعبه‌ابزار شروع و سلام | فرانسه از صفر</title>
+  <meta name="description" content="آموزش کاربردی سلام، احوالپرسی و معرفی به زبان فرانسه همراه با فایل صوتی تعاملی">
+  <meta property="og:title" content="درس ۱: جعبه‌ابزار شروع و سلام — فرانسه از صفر">
+  <meta property="og:description" content="یادگیری مکالمه روان و تلفظ بومی زبان فرانسه">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0f17;
-      --card: #151d2a;
+      --bg: #0a0e17;
+      --card-bg: #141b26;
       --gold: #f3ba2f;
-      --text: #e6edf3;
+      --gold-glow: rgba(243, 186, 47, 0.15);
+      --text: #f0f6fc;
       --sub: #8b949e;
-      --border: rgba(243, 186, 47, 0.2);
+      --border: #232c3d;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -24,124 +28,241 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 24px 16px;
+      padding: 36px 20px;
       min-height: 100vh;
     }
-    header { text-align: center; margin-bottom: 24px; }
-    h1 { color: var(--gold); font-size: 1.5rem; margin-bottom: 6px; }
-    p.lead { color: var(--sub); font-size: 0.88rem; }
-    .container { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 14px; }
-    .card {
-      background: var(--card);
+    .wrapper { width: 100%; max-width: 900px; }
+    header { text-align: center; margin-bottom: 28px; }
+    h1 { color: var(--gold); font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; }
+    p.lead { color: var(--sub); font-size: 0.95rem; }
+
+    /* نوار ابزار هوشمند */
+    .controls-bar {
+      background: #101622;
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
+      border-radius: 14px;
+      padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: transform 0.2s ease;
+      margin-bottom: 24px;
+      gap: 12px;
+      flex-wrap: wrap;
     }
-    .card:hover { transform: translateY(-2px); }
-    .phrase-fr { font-size: 1.25rem; font-weight: 800; color: #fff; direction: ltr; text-align: left; }
-    .phrase-pronun { color: var(--gold); font-size: 0.88rem; margin-top: 4px; }
-    .phrase-fa { color: var(--sub); font-size: 0.82rem; margin-top: 2px; }
-    .btn-audio {
+    .control-group { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--sub); }
+    .speed-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: inherit;
+    }
+    .speed-btn.active {
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      border-color: var(--gold);
+    }
+    .toggle-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .toggle-btn:hover { border-color: var(--gold); }
+
+    /* گرید دو ستونه دسکتاپ */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 720px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 4px 20px var(--gold-glow);
+    }
+    .phrase-fr { font-size: 1.35rem; font-weight: 800; color: #fff; direction: ltr; text-align: left; }
+    .phrase-pronun { color: var(--gold); font-size: 0.92rem; margin-top: 5px; }
+    .phrase-fa {
+      color: var(--sub);
+      font-size: 0.86rem;
+      margin-top: 4px;
+      transition: opacity 0.2s, filter 0.2s;
+    }
+    
+    body.hide-translations .phrase-fa,
+    body.hide-translations .phrase-pronun {
+      filter: blur(5px);
+      user-select: none;
+      opacity: 0.4;
+    }
+.btn-audio {
       background: rgba(243, 186, 47, 0.12);
       border: 1px solid var(--gold);
       color: var(--gold);
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      margin-right: 12px;
+      transition: transform 0.15s;
     }
-    .btn-audio:active { transform: scale(0.92); }
-    .nav-back {
-      margin-top: 24px;
+    .btn-audio:active { transform: scale(0.9); }
+
+    .pro-tip {
+      grid-column: 1 / -1;
+      background: rgba(243, 186, 47, 0.07);
+      border-right: 4px solid var(--gold);
+      border-radius: 0 14px 14px 0;
+      padding: 18px 20px;
+      margin-top: 8px;
+    }
+    .pro-tip-title { font-size: 0.95rem; font-weight: 800; color: var(--gold); margin-bottom: 8px; }
+    .pro-tip-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.9; }
+
+    .nav-bar {
+      margin-top: 36px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .nav-link {
       text-decoration: none;
       color: var(--sub);
       font-size: 0.9rem;
-      border: 1px solid #30363d;
-      padding: 8px 18px;
+      border: 1px solid var(--border);
+      padding: 8px 20px;
       border-radius: 20px;
       transition: all 0.2s;
     }
-    .nav-back:hover {
-      color: var(--gold);
-      border-color: var(--gold);
-    }
+    .nav-link:hover { color: var(--gold); border-color: var(--gold); }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>جلسه اول: جعبه‌ابزار مکالمه فرانسوی</h1>
-    <p class="lead">روی آیکون بلندگو بزن تا تلفظ طبیعی را بشنوی</p>
-  </header>
+  <div class="wrapper">
+    <header>
+      <h1>درس ۱: جعبه‌ابزار شروع و سلام</h1>
+      <p class="lead">سلام و احوال‌پرسی روزمره، خداحافظی و معرفی خود</p>
+    </header>
 
-  <div class="container">
-    <div class="card">
-      <div>
-        <div class="phrase-fr">Salut !</div>
-        <div class="phrase-pronun">تلفظ: سا‌لو</div>
-        <div class="phrase-fa">معنی: سلام / خداحافظ (صمیمی)</div>
+    <div class="controls-bar">
+      <div class="control-group">
+        <span>سرعت صوت:</span>
+        <button class="speed-btn" onclick="setSpeed(0.7, this)">۰٫۷×</button>
+        <button class="speed-btn active" onclick="setSpeed(0.9, this)">۰٫۹×</button>
+        <button class="speed-btn" onclick="setSpeed(1.1, this)">۱٫۱×</button>
       </div>
-      <button class="btn-audio" onclick="playAudio('Salut')">🔊</button>
+      <button class="toggle-btn" onclick="toggleTranslations()">👁️ مخفی/نمایش ترجمه</button>
     </div>
 
-    <div class="card">
-      <div>
-        <div class="phrase-fr">Ça va ?</div>
-        <div class="phrase-pronun">تلفظ: سا وا؟</div>
-        <div class="phrase-fa">معنی: چطوری؟ خوبی؟</div>
+    <div class="grid">
+      <div class="card">
+        <div>
+          <div class="phrase-fr">Salut !</div>
+          <div class="phrase-pronun">تلفظ: سا‌لو</div>
+          <div class="phrase-fa">معنی: سلام / خداحافظ (صمیمی و خیابانی)</div>
+        </div>
+        <button class="btn-audio" onclick="playAudio('Salut')">🔊</button>
       </div>
-      <button class="btn-audio" onclick="playAudio('Ça va ?')">🔊</button>
-    </div>
 
-    <div class="card">
-      <div>
-        <div class="phrase-fr">Merci, et toi ?</div>
-        <div class="phrase-pronun">تلفظ: مِغ‌سی، اِ توا؟</div>
-        <div class="phrase-fa">معنی: ممنون، و خودت؟</div>
+      <div class="card">
+        <div>
+          <div class="phrase-fr">Ça va ?</div>
+          <div class="phrase-pronun">تلفظ: سا وا؟</div>
+          <div class="phrase-fa">معنی: چطوری؟ روبه‌راهی؟</div>
+        </div>
+        <button class="btn-audio" onclick="playAudio('Ça va ?')">🔊</button>
       </div>
-      <button class="btn-audio" onclick="playAudio('Merci, et toi ?')">🔊</button>
-    </div>
 
-    <div class="card">
-      <div>
-        <div class="phrase-fr">Je m'appelle Youssouf.</div>
-        <div class="phrase-pronun">تلفظ: ژُ مَپِل یوسف</div>
-        <div class="phrase-fa">معنی: اسم من یوسف است</div>
+      <div class="card">
+        <div>
+          <div class="phrase-fr">Merci, et toi ?</div>
+          <div class="phrase-pronun">تلفظ: مِغ‌سی، اِ توا؟</div>
+          <div class="phrase-fa">معنی: ممنون، تو چطوری؟</div>
+        </div>
+        <button class="btn-audio" onclick="playAudio('Merci, et toi ?')">🔊</button>
       </div>
-      <button class="btn-audio" onclick="playAudio('Je m\'appelle Youssouf')">🔊</button>
-    </div>
 
-    <div class="card">
-      <div>
-        <div class="phrase-fr">Enchanté !</div>
-        <div class="phrase-pronun">تلفظ: آن‌شانته!</div>
-        <div class="phrase-fa">معنی: خوشوقتم!</div>
+      <div class="card">
+        <div>
+          <div class="phrase-fr">Je m'appelle Youssouf.</div>
+          <div class="phrase-pronun">تلفظ: ژُ مَپِل یوسف</div>
+          <div class="phrase-fa">معنی: اسم من یوسف است</div>
+        </div>
+        <button class="btn-audio" onclick="playAudio('Je m\'appelle Youssouf')">🔊</button>
       </div>
-      <button class="btn-audio" onclick="playAudio('Enchanté')">🔊</button>
+
+      <div class="card">
+        <div>
+          <div class="phrase-fr">Enchanté !</div>
+          <div class="phrase-pronun">تلفظ: آن‌شانته!</div>
+          <div class="phrase-fa">معنی: از آشنایی با شما خوشوقتم!</div>
+        </div>
+        <button class="btn-audio" onclick="playAudio('Enchanté')">🔊</button>
+      </div>
+
+      <!-- جعبه نکته طلایی تلفظ حرف R -->
+      <div class="pro-tip">
+        <div class="pro-tip-title">⚡ راز طلایی تلفظ حرف R فرانسوی:</div>
+        <div class="pro-tip-text">
+          در فرانسوی حرف <code>r</code> با نوک زبان تلفظ نمی‌شود؛ بلکه دقیقاً در انتهای گلو مثل تلفظ حرف <strong>«خ»</strong> یا <strong>«غ»</strong> نرم در فارسی تولید می‌شود. به عنوان مثال در کلمه <strong>Merci</strong>، نباید بگویید «مرسی»، بلکه باید بگویید: <em>«مِغ‌سی»</em>.
+        </div>
+      </div>
+    </div>
+<div class="nav-bar">
+      <a href="../index.html" class="nav-link">فهرست کل درس‌ها 🏠</a>
+      <a href="02-identity.html" class="nav-link">درس ۲ (بعدی) →</a>
     </div>
   </div>
 
-  <a href="../index.html" class="nav-back">← بازگشت به فهرست درس‌ها</a>
-
   <script>
+    let speechRate = 0.9;
+    function setSpeed(rate, btn) {
+      speechRate = rate;
+      document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    function toggleTranslations() {
+      document.body.classList.toggle('hide-translations');
+    }
     function playAudio(text) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'fr-FR';
-        utterance.rate = 0.9;
+        utterance.rate = speechRate;
         window.speechSynthesis.speak(utterance);
       } else {
-        alert('مرورگر شما از پخش صوتی پشتیبانی نمی‌کند.');
+        alert('مرورگر شما از موتور صوتی پشتیبانی نمی‌کند.');
       }
     }
   </script>
