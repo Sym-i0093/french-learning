@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>فرانسه از صفر | مرجع مکالمه کاربردی</title>
+  <meta name="description" content="آموزش تعاملی و صوتی مکالمه زبان فرانسه از صفر">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -16,52 +17,58 @@
       --text: #f0f6fc;
       --sub: #8b949e;
       --border: #232c3d;
-      --active-badge: #238636;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Vazirmatn', sans-serif;
       background: var(--bg);
       color: var(--text);
+      padding: 40px 20px;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 32px 16px;
-      min-height: 100vh;
     }
-    .wrapper { width: 100%; max-width: 520px; }
-    header { text-align: center; margin-bottom: 30px; }
+    .wrapper { width: 100%; max-width: 900px; }
+    header { text-align: center; margin-bottom: 36px; }
     .badge {
       display: inline-block;
       background: var(--gold-glow);
       color: var(--gold);
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      padding: 4px 12px;
+      padding: 6px 14px;
       border-radius: 20px;
       border: 1px solid var(--gold);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
-    h1 { font-size: 1.7rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
-    p.desc { color: var(--sub); font-size: 0.88rem; line-height: 1.6; }
+    h1 { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+    p.desc { color: var(--sub); font-size: 0.95rem; line-height: 1.6; }
 
     .section-title {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--gold);
-      margin: 24px 0 12px;
+      margin: 32px 0 16px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .grid { display: flex; flex-direction: column; gap: 12px; }
-    
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 680px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     .card-link {
       text-decoration: none;
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 16px;
+      padding: 18px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -72,30 +79,37 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 20px var(--gold-glow);
     }
-    .card-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .card-sub { font-size: 0.8rem; color: var(--sub); }
+    .card-title { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .card-sub { font-size: 0.82rem; color: var(--sub); line-height: 1.5; }
     .card-tag {
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       background: rgba(35, 134, 54, 0.2);
       color: #3fb950;
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: 8px;
       border: 1px solid rgba(63, 185, 80, 0.3);
       white-space: nowrap;
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    .card-tag.done {
+      background: #238636;
+      color: #fff;
     }
     .card-tag.soon {
       background: rgba(139, 148, 158, 0.1);
       color: var(--sub);
       border-color: var(--border);
+      cursor: default;
     }
 
     footer {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 50px;
       color: var(--sub);
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       border-top: 1px solid var(--border);
-      padding-top: 20px;
+      padding-top: 24px;
       width: 100%;
     }
   </style>
@@ -109,7 +123,6 @@
       <p class="desc">یادگیری مکالمه روان، تلفظ بومی و کاربردی از صفر مطلق</p>
     </header>
 
-    <!-- بخش مکالمات -->
     <div class="section-title">🗣️ مسیر مکالمه گام‌به‌گام</div>
     <div class="grid">
       <a href="lessons/01-intro.html" class="card-link">
@@ -117,18 +130,18 @@
           <div class="card-title">درس ۱: جعبه‌ابزار شروع و سلام</div>
           <div class="card-sub">سلام، حال و احوال، خداحافظی و معرفی اسم</div>
         </div>
-        <span class="card-tag">آماده مطالعه</span>
+        <span class="card-tag" id="tag-01" onclick="toggleDone(event, '01')">آماده مطالعه</span>
       </a>
-<a href="lessons/02-identity.html" class="card-link">
+
+      <a href="lessons/02-identity.html" class="card-link">
         <div>
           <div class="card-title">درس ۲: هویت، ملیت و زبان‌ها</div>
           <div class="card-sub">ایرانی بودن، زبان فارسی و یادگیری فرانسه</div>
         </div>
-        <span class="card-tag">آماده مطالعه</span>
+        <span class="card-tag" id="tag-02" onclick="toggleDone(event, '02')">آماده مطالعه</span>
       </a>
     </div>
 
-    <!-- بخش دایره لغات -->
     <div class="section-title">📦 دایره لغات موضوعی (بزودی)</div>
     <div class="grid">
       <div class="card-link" style="opacity: 0.7; cursor: default;">
@@ -138,24 +151,41 @@
         </div>
         <span class="card-tag soon">در دست ساخت</span>
       </div>
-    </div>
-
-    <!-- بخش رازهای تلفظ -->
-    <div class="section-title">⚡ تالار لهجه و تلفظ</div>
-    <div class="grid">
       <div class="card-link" style="opacity: 0.7; cursor: default;">
         <div>
-          <div class="card-title">قانون حروف خاموش و اتصالات (Liaison)</div>
-          <div class="card-sub">چرا کلمات به هم می‌چسبند و تلفظ حرف R فرانسوی</div>
+          <div class="card-title">اعداد، پول و خرید</div>
+          <div class="card-sub">پرسیدن قیمت و شماره در بازار</div>
         </div>
         <span class="card-tag soon">در دست ساخت</span>
       </div>
     </div>
 
-    <footer>
-      طراحی شده برای تمرین روزمره و کاربردی زبان فرانسه 🇫🇷
-    </footer>
+    <footer>طراحی شده برای تمرین روزمره و کاربردی زبان فرانسه 🇫🇷</footer>
   </div>
 
+  <script>
+    function updateProgressUI() {
+      ['01', '02'].forEach(id => {
+        const tag = document.getElementById('tag-' + id);
+        if (tag && localStorage.getItem('lesson_' + id) === 'done') {
+          tag.innerText = 'تمرین شد ✓';
+          tag.classList.add('done');
+        }
+      });
+    }
+
+    function toggleDone(event, id) {
+      event.preventDefault();
+      const current = localStorage.getItem('lesson_' + id);
+      if (current === 'done') {
+        localStorage.removeItem('lesson_' + id);
+      } else {
+        localStorage.setItem('lesson_' + id, 'done');
+      }
+      location.reload();
+    }
+
+    updateProgressUI();
+  </script>
 </body>
 </html>

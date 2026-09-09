@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>درس ۲: هویت، ملیت و زبان‌ها | فرانسه از صفر</title>
+  <meta name="description" content="آموزش کاربردی معرفی هویت، بیان ملیت ایرانی و صحبت کردن به زبان فرانسه همراه با فایل صوتی تعاملی">
+  <meta property="og:title" content="درس ۲: هویت، ملیت و زبان‌ها — فرانسه از صفر">
+  <meta property="og:description" content="یادگیری مکالمه روان و تلفظ بومی زبان فرانسه">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --card-bg: #141b26;
+      --gold: #f3ba2f;
+      --gold-glow: rgba(243, 186, 47, 0.15);
+      --text: #f0f6fc;
+      --sub: #8b949e;
+      --border: #232c3d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 36px 20px;
+      min-height: 100vh;
+    }
+    .wrapper { width: 100%; max-width: 900px; }
+    header { text-align: center; margin-bottom: 28px; }
+    h1 { color: var(--gold); font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; }
+    p.lead { color: var(--sub); font-size: 0.95rem; }
+
+    .controls-bar {
+      background: #101622;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .control-group { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--sub); }
+    .speed-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: inherit;
+    }
+    .speed-btn.active {
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      border-color: var(--gold);
+    }
+    .toggle-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .toggle-btn:hover { border-color: var(--gold); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 720px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 4px 20px var(--gold-glow);
+    }
+    .phrase-fr { font-size: 1.35rem; font-weight: 800; color: #fff; direction: ltr; text-align: left; }
+    .phrase-pronun { color: var(--gold); font-size: 0.92rem; margin-top: 5px; }
+    .phrase-fa {
+      color: var(--sub);
+      font-size: 0.86rem;
+      margin-top: 4px;
+      transition: opacity 0.2s, filter 0.2s;
+    }
+    
+    body.hide-translations .phrase-fa,
+    body.hide-translations .phrase-pronun {
+      filter: blur(5px);
+      user-select: none;
+      opacity: 0.4;
+    }
+
+    .btn-audio {
+      background: rgba(243, 186, 47, 0.12);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      margin-right: 12px;
+      transition: transform 0.15s;
+    }
+    .btn-audio:active { transform: scale(0.9); }
+
+    .pro-tip {
+      grid-column: 1 / -1;
+      background: rgba(243, 186, 47, 0.07);
+      border-right: 4px solid var(--gold);
+      border-radius: 0 14px 14px 0;
+      padding: 18px 20px;
+      margin-top: 8px;
+    }
+    .pro-tip-title { font-size: 0.95rem; font-weight: 800; color: var(--gold); margin-bottom: 8px; }
+    .pro-tip-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.9; }
+
+    .nav-bar {
+      margin-top: 36px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .nav-link {
+      text-decoration: none;
+      color: var(--sub);
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      padding: 8px 20px;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover { color: var(--gold); border-color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1>درس ۲: هویت، ملیت و زبان‌ها</h1>
+      <p class="lead">بیان ملیت، زبان مادری و مکالمه مقدماتی</p>
+    </header>
+
+    <div class="controls-bar">
+      <div class="control-group">
+        <span>سرعت صوت:</span>
+        <button class="speed-btn" onclick="setSpeed(0.7, this)">۰٫۷×</button>
+        <button class="speed-btn active" onclick="setSpeed(0.9, this)">۰٫۹×</button>
+        <button class="speed-btn" onclick="setSpeed(1.1, this)">۱٫۱×</button>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranslations()">👁️ مخفی/نمایش ترجمه</button>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div>
+          <div class="phrase-fr">Je suis iranien.</div>
+          <div class="phrase-pronun">تلفظ: ژُو سوئی زی‌قانین</div>
+          <div class="phrase-fa">معنی: من ایرانی هستم</div>
+        </div>
+        <button class="btn-audio" onclick="playAudio('Je suis iranien')">🔊</button>
+      </div>
+<div class="card">
+        <div>
+          <div class="phrase-fr">Je parle persan.</div>
+          <div class="phrase-pronun">تلفظ: ژُ پاقل پِغ‌سان</div>
+          <div class="phrase-fa">معنی: من فارسی صحبت می‌کنم</div>
+        </div>
+        <button class="btn-audio" onclick="playAudio('Je parle persan')">🔊</button>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="phrase-fr">Parlez-vous anglais ?</div>
+          <div class="phrase-pronun">تلفظ: پاقله وو آنگله؟</div>
+          <div class="phrase-fa">معنی: آیا انگلیسی صحبت می‌کنید؟</div>
+        </div>
+        <button class="btn-audio" onclick="playAudio('Parlez-vous anglais ?')">🔊</button>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="phrase-fr">J'apprends le français.</div>
+          <div class="phrase-pronun">تلفظ: ژاپغان لُ فغانسه</div>
+          <div class="phrase-fa">معنی: من دارم فرانسوی یاد می‌گیرم</div>
+        </div>
+        <button class="btn-audio" onclick="playAudio('J\'apprends le français')">🔊</button>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="phrase-fr">Un peu.</div>
+          <div class="phrase-pronun">تلفظ: اَن پو</div>
+          <div class="phrase-fa">معنی: کمی / یک مقدار</div>
+        </div>
+        <button class="btn-audio" onclick="playAudio('Un peu')">🔊</button>
+      </div>
+
+      <div class="pro-tip">
+        <div class="pro-tip-title">⚡ راز طلایی لهجه خیابانی (اتصال حروف یا Liaison):</div>
+        <div class="pro-tip-text">
+          در جمله <strong>Je suis iranien</strong>، حرف s آخر کلمه suis نباید خوانده شود، اما چون کلمه بعدی با حرف صدادار (i) شروع می‌شود، مانند یک پل متصل می‌شود و صدای <strong>«ز»</strong> نرم می‌دهد: <em>«ژو سوئی-زی‌قانین»</em>. رعایت این اتصال‌ها راز اصلی داشتن لهجه روان فرانسوی است.
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <a href="01-intro.html" class="nav-link">← درس ۱ (قبلی)</a>
+      <a href="../index.html" class="nav-link">فهرست کل درس‌ها 🏠</a>
+    </div>
+  </div>
+
+  <script>
+    let speechRate = 0.9;
+    function setSpeed(rate, btn) {
+      speechRate = rate;
+      document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    function toggleTranslations() {
+      document.body.classList.toggle('hide-translations');
+    }
+    function playAudio(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'fr-FR';
+        utterance.rate = speechRate;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('مرورگر شما از موتور صوتی پشتیبانی نمی‌کند.');
+      }
+    }
+  </script>
+</body>
+</html>
