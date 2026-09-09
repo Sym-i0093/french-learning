@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>درس ۱: سلام و معرفی در فرانسه</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card: #151d2a;
+      --gold: #f3ba2f;
+      --text: #e6edf3;
+      --sub: #8b949e;
+      --border: rgba(243, 186, 47, 0.2);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+      min-height: 100vh;
+    }
+    header { text-align: center; margin-bottom: 24px; }
+    h1 { color: var(--gold); font-size: 1.5rem; margin-bottom: 6px; }
+    p.lead { color: var(--sub); font-size: 0.88rem; }
+    .container { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 14px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+    .card:hover { transform: translateY(-2px); }
+    .phrase-fr { font-size: 1.25rem; font-weight: 800; color: #fff; direction: ltr; text-align: left; }
+    .phrase-pronun { color: var(--gold); font-size: 0.88rem; margin-top: 4px; }
+    .phrase-fa { color: var(--sub); font-size: 0.82rem; margin-top: 2px; }
+    .btn-audio {
+      background: rgba(243, 186, 47, 0.12);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+    .btn-audio:active { transform: scale(0.92); }
+    .nav-back {
+      margin-top: 24px;
+      text-decoration: none;
+      color: var(--sub);
+      font-size: 0.9rem;
+      border: 1px solid #30363d;
+      padding: 8px 18px;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+    .nav-back:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>جلسه اول: جعبه‌ابزار مکالمه فرانسوی</h1>
+    <p class="lead">روی آیکون بلندگو بزن تا تلفظ طبیعی را بشنوی</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <div>
+        <div class="phrase-fr">Salut !</div>
+        <div class="phrase-pronun">تلفظ: سا‌لو</div>
+        <div class="phrase-fa">معنی: سلام / خداحافظ (صمیمی)</div>
+      </div>
+      <button class="btn-audio" onclick="playAudio('Salut')">🔊</button>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="phrase-fr">Ça va ?</div>
+        <div class="phrase-pronun">تلفظ: سا وا؟</div>
+        <div class="phrase-fa">معنی: چطوری؟ خوبی؟</div>
+      </div>
+      <button class="btn-audio" onclick="playAudio('Ça va ?')">🔊</button>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="phrase-fr">Merci, et toi ?</div>
+        <div class="phrase-pronun">تلفظ: مِغ‌سی، اِ توا؟</div>
+        <div class="phrase-fa">معنی: ممنون، و خودت؟</div>
+      </div>
+      <button class="btn-audio" onclick="playAudio('Merci, et toi ?')">🔊</button>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="phrase-fr">Je m'appelle Youssouf.</div>
+        <div class="phrase-pronun">تلفظ: ژُ مَپِل یوسف</div>
+        <div class="phrase-fa">معنی: اسم من یوسف است</div>
+      </div>
+      <button class="btn-audio" onclick="playAudio('Je m\'appelle Youssouf')">🔊</button>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="phrase-fr">Enchanté !</div>
+        <div class="phrase-pronun">تلفظ: آن‌شانته!</div>
+        <div class="phrase-fa">معنی: خوشوقتم!</div>
+      </div>
+      <button class="btn-audio" onclick="playAudio('Enchanté')">🔊</button>
+    </div>
+  </div>
+
+  <a href="../index.html" class="nav-back">← بازگشت به فهرست درس‌ها</a>
+
+  <script>
+    function playAudio(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'fr-FR';
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('مرورگر شما از پخش صوتی پشتیبانی نمی‌کند.');
+      }
+    }
+  </script>
+</body>
+</html>
